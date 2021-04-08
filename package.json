@@ -1,11 +1,10 @@
 {
-  "name": "create-nodejs-express-app",
-  "version": "1.7.0",
-  "description": "Create a Node.js app for building production-ready RESTful APIs using Express, by running one command",
-  "bin": "bin/createNodejsApp.js",
+  "name": "express-install-webapp",
+  "version": "1.1.0",
+  "description": "A system that allows user to pick Windows software then get those software installed automatically.",
   "main": "src/index.js",
-  "repository": "https://github.com/hagopj13/node-express-boilerplate.git",
-  "author": "Hagop Jamkojian <hagopj13@gmail.com>",
+  "repository": "https://github.com/kylesmile1103/express-install-webapp.git",
+  "author": "Kyle Pham, Tan Vuong",
   "license": "MIT",
   "engines": {
     "node": ">=12.0.0"
