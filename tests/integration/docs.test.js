@@ -3,6 +3,10 @@ const httpStatus = require('http-status');
 const app = require('../../src/app');
 const config = require('../../src/config/config');
 
+afterAll(async () => {
+  await new Promise(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+});
+
 describe('Auth routes', () => {
   describe('GET /v1/docs', () => {
     test('should return 404 when running in production', async () => {
