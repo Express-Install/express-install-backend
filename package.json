@@ -4,7 +4,7 @@
   "description": "A system that allows user to pick Windows software then get those software installed automatically.",
   "main": "src/index.js",
   "repository": "https://github.com/kylesmile1103/express-install-webapp.git",
-  "author": "Kyle Pham, Tan Vuong",
+  "author": "Kyle Pham, Vuong Nguyen",
   "license": "MIT",
   "engines": {
     "node": ">=12.0.0"
@@ -26,26 +26,15 @@
     "prepare": "husky install"
   },
   "keywords": [
-    "node",
+    "express-install",
+    "win32-app",
+    "auto-install",
     "node.js",
-    "boilerplate",
-    "generator",
     "express",
-    "rest",
-    "api",
+    "rest-api",
     "mongodb",
-    "mongoose",
-    "es6",
-    "es7",
-    "es8",
-    "es9",
-    "jest",
     "travis",
-    "docker",
-    "passport",
-    "joi",
-    "eslint",
-    "prettier"
+    "docker"
   ],
   "dependencies": {
     "bcryptjs": "^2.4.3",
