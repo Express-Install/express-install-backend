@@ -2,6 +2,7 @@ const Joi = require('joi');
 const httpStatus = require('http-status');
 const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
+// const logger = require('../config/logger');
 
 const validate = (schema) => (req, res, next) => {
   const validSchema = pick(schema, ['params', 'query', 'body']);
@@ -10,6 +11,7 @@ const validate = (schema) => (req, res, next) => {
     .prefs({ errors: { label: 'key' } })
     .validate(object);
 
+  // logger.info(JSON.stringify(req.body, null, 2));
   if (error) {
     const errorMessage = error.details
       .map((details) => details.message)
@@ -20,4 +22,13 @@ const validate = (schema) => (req, res, next) => {
   return next();
 };
 
-module.exports = validate;
+const bulkValidate = (schema) => (req, res, next) => {
+  // req.forEach((e) => validate(schema)(e, res, next));
+  const bodyArray = req.body;
+  bodyArray.forEach((body) => {
+    req.body = body;
+    validate(schema)(req, res, next);
+  });
+};
+
+module.exports = { validate, bulkValidate };

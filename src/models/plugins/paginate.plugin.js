@@ -20,7 +20,7 @@ const paginate = (schema) => {
    * @returns {Promise<QueryResult>}
    */
   schema.statics.paginate = async function (filter, options) {
-    let sort = '';
+    let sort;
     if (options.sortBy) {
       const sortingCriteria = [];
       options.sortBy.split(',').forEach((sortOption) => {
@@ -32,8 +32,14 @@ const paginate = (schema) => {
       sort = 'createdAt';
     }
 
-    const limit = options.limit && parseInt(options.limit, 10) > 0 ? parseInt(options.limit, 10) : 10;
-    const page = options.page && parseInt(options.page, 10) > 0 ? parseInt(options.page, 10) : 1;
+    const limit =
+      options.limit && parseInt(options.limit, 10) > 0
+        ? parseInt(options.limit, 10)
+        : 10;
+    const page =
+      options.page && parseInt(options.page, 10) > 0
+        ? parseInt(options.page, 10)
+        : 1;
     const skip = (page - 1) * limit;
 
     const countPromise = this.countDocuments(filter).exec();
@@ -45,7 +51,7 @@ const paginate = (schema) => {
           populateOption
             .split('.')
             .reverse()
-            .reduce((a, b) => ({ path: b, populate: a }))
+            .reduce((a, b) => ({ path: b, populate: a })),
         );
       });
     }
