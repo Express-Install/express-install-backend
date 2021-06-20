@@ -7,12 +7,12 @@ const createPackage = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(pkg);
 });
 
-const bulkUpdatePackages = catchAsync(async (req, res) => {
-  const packageList = await packageService.bulkUpdatePackages(req.body);
+const bulkCreatePackages = catchAsync(async (req, res) => {
+  const packageList = await packageService.bulkCreatePackages(req.body);
   res.status(httpStatus.CREATED).send(packageList);
 });
 
 module.exports = {
   createPackage,
-  bulkUpdatePackages,
+  bulkCreatePackages,
 };

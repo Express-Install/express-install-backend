@@ -1,4 +1,5 @@
 const Joi = require('joi');
+// const category = require('../config/category.js');
 
 const createPackage = {
   body: Joi.object().keys({
@@ -10,9 +11,11 @@ const createPackage = {
     publishDate: Joi.string(),
     source: Joi.string().optional().allow(''),
     summary: Joi.string().optional().allow(''),
-    tags: Joi.string().optional().allow(''),
+    tags: Joi.array().optional(),
+    category: Joi.string(),
   }),
 };
+
 const createMultiplePackages = {
   body: Joi.array().items(createPackage.body),
 };

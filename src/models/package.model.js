@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const { toJSON, paginate } = require('./plugins');
+const category = require('../config/category.js');
 
 const packageSchema = mongoose.Schema(
   {
@@ -36,8 +38,13 @@ const packageSchema = mongoose.Schema(
       trim: true,
     },
     tags: {
-      type: String,
+      type: Array,
       trim: true,
+    },
+    category: {
+      type: String,
+      enum: category,
+      default: 'common',
     },
   },
   {
@@ -45,11 +52,18 @@ const packageSchema = mongoose.Schema(
   },
 );
 
-packageSchema.statics.isPackageExist = async function (packageName) {
+// add plugin that converts mongoose to json
+packageSchema.plugin(toJSON);
+packageSchema.plugin(paginate);
+
+packageSchema.statics.isPackageExist = async function(packageName) {
   const pkg = await this.findOne({ packageName });
   return !!pkg;
 };
 
+/**
+ * @typedef Package
+ */
 const Package = mongoose.model('Package', packageSchema);
 
 module.exports = Package;

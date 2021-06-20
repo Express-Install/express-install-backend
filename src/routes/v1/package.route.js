@@ -19,7 +19,7 @@ router
   .post(
     auth('managePackages'),
     validate(packageValidation.createMultiplePackages),
-    packageController.bulkUpdatePackages,
+    packageController.bulkCreatePackages,
   );
 
 module.exports = router;
