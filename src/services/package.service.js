@@ -21,7 +21,8 @@ const createPackage = async (pkg) => {
  * @returns {Promise<Package>}
  */
 const bulkCreatePackages = async (packageList) => {
-  return Package.insertMany(packageList);
+  // eslint-disable-next-line no-return-await
+  return await Package.insertMany(packageList);
 };
 
 /**
