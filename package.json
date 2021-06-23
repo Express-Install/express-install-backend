@@ -3,11 +3,11 @@
   "version": "1.1.0",
   "description": "A system that allows user to pick Windows software then get those software installed automatically.",
   "main": "src/index.js",
-  "repository": "https://github.com/kylesmile1103/express-install-webapp.git",
+  "repository": "https://github.com/Express-Install/express-install-backend.git",
   "author": "Kyle Pham, Vuong Nguyen",
   "license": "MIT",
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=10.19.0"
   },
   "scripts": {
     "start": "pm2 start ecosystem.config.json --no-daemon",
