@@ -4,6 +4,7 @@ services:
   node-app:
     build: .
     image: node-app
+    container_name: backend
     environment:
       - MONGODB_URL=mongodb://mongodb:27017/express-install
     ports:
@@ -17,6 +18,7 @@ services:
 
   mongodb:
     image: mongo:4.2.1-bionic
+    container_name: database
     ports:
       - '27017:27017'
     volumes:
