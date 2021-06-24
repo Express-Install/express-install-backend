@@ -57,10 +57,48 @@ const getPackageByPackageName = async (packageName) => {
   return Package.findOne({ packageName });
 };
 
+/**
+ * Update package by id
+ * @param {ObjectId} packageId
+ * @param {Object} updateBody
+ * @returns {Promise<Package>}
+ */
+const updatePackageById = async (packageId, updateBody) => {
+  const pkg = await getPackageById(packageId);
+  if (!pkg) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Package not found');
+  }
+  if (
+    updateBody.packageName &&
+    (await pkg.isEmailTaken(updateBody.packageName, packageId))
+  ) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+  }
+  Object.assign(pkg, updateBody);
+  await pkg.save();
+  return pkg;
+};
+
+/**
+ * Delete package by id
+ * @param {ObjectId} packageId
+ * @returns {Promise<Package>}
+ */
+const deletePackageById = async (packageId) => {
+  const pkg = await getPackageById(packageId);
+  if (!pkg) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  }
+  await pkg.remove();
+  return pkg;
+};
+
 module.exports = {
   createPackage,
   bulkCreatePackages,
   queryPackages,
   getPackageById,
   getPackageByPackageName,
+  updatePackageById,
+  deletePackageById,
 };

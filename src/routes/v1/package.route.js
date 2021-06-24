@@ -12,6 +12,11 @@ router
     auth('managePackages'),
     validate(packageValidation.createPackage),
     packageController.createPackage,
+  )
+  .get(
+    auth('getPackages'),
+    validate(packageValidation.getPackages),
+    packageController.getPackages,
   );
 
 router
@@ -22,4 +27,29 @@ router
     packageController.bulkCreatePackages,
   );
 
+router
+  .route('/:packageId')
+  .get(
+    auth('getPackages'),
+    validate(packageValidation.getPackage),
+    packageController.getPackage,
+  )
+  .patch(
+    auth('managePackages'),
+    validate(packageValidation.updatePackage),
+    packageController.updatePackage,
+  )
+  .delete(
+    auth('managePackages'),
+    validate(packageValidation.deletePackage),
+    packageController.deletePackage,
+  );
+
 module.exports = router;
+
+/**
+ * @swagger
+ * tags:
+ *   name: Packages
+ *   description: Package management
+ */

@@ -1,5 +1,6 @@
 const Joi = require('joi');
 // const category = require('../config/category.js');
+const { objectId } = require('./custom.validation');
 
 const createPackage = {
   body: Joi.object().keys({
@@ -20,7 +21,40 @@ const createMultiplePackages = {
   body: Joi.array().items(createPackage.body),
 };
 
+const getPackages = {
+  query: Joi.object().keys({
+    packageName: Joi.string(),
+    cat: Joi.string(),
+    sortBy: Joi.string(),
+    limit: Joi.number().integer(),
+    page: Joi.number().integer(),
+  }),
+};
+
+const getPackage = {
+  params: Joi.object().keys({
+    packageId: Joi.string().custom(objectId),
+  }),
+};
+
+const updatePackage = {
+  params: Joi.object().keys({
+    userId: Joi.required().custom(objectId),
+  }),
+  body: createPackage.body.min(1),
+};
+
+const deletePackage = {
+  params: Joi.object().keys({
+    packageId: Joi.string().custom(objectId),
+  }),
+};
+
 module.exports = {
   createPackage,
   createMultiplePackages,
+  getPackages,
+  getPackage,
+  updatePackage,
+  deletePackage,
 };
