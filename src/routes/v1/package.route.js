@@ -14,7 +14,7 @@ router
     packageController.createPackage,
   )
   .get(
-    auth('getPackages'),
+    // auth('getPackages'),
     validate(packageValidation.getPackages),
     packageController.getPackages,
   );
@@ -30,7 +30,7 @@ router
 router
   .route('/:packageId')
   .get(
-    auth('getPackages'),
+    // auth('getPackages'),
     validate(packageValidation.getPackage),
     packageController.getPackage,
   )

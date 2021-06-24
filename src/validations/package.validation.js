@@ -39,7 +39,7 @@ const getPackage = {
 
 const updatePackage = {
   params: Joi.object().keys({
-    userId: Joi.required().custom(objectId),
+    packageId: Joi.required().custom(objectId),
   }),
   body: createPackage.body.min(1),
 };
