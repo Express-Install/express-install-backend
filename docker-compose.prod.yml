@@ -4,16 +4,3 @@ services:
   node-app:
     container_name: node-app-prod
     command: yarn start
-
-  nginx:
-    image: jonasal/nginx-certbot:latest
-    container_name: nginx
-    restart: unless-stopped
-    environment:
-      CERTBOT_EMAIL: mrquangkhai98@gmail.com
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - ./NGINX/nginx_secrets:/etc/letsencrypt
-      - ./NGINX/user_conf.d:/etc/nginx/user_conf.d
