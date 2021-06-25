@@ -3,8 +3,10 @@ const mailgun = require('nodemailer-mailgun-transport');
 const config = require('../config/config');
 const logger = require('../config/logger');
 
-const method = 'API';
-const transport = nodemailer.createTransport(mailgun(config.email.api));
+const method = 'API'; // API || SMTP
+const transportConfig =
+  method === 'SMTP' ? config.email.smtp : mailgun(config.email.api);
+const transport = nodemailer.createTransport(transportConfig);
 /* istanbul ignore next */
 if (config.env !== 'test' && method === 'SMTP') {
   transport
