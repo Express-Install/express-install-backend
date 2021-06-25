@@ -33,6 +33,10 @@ const envVarsSchema = Joi.object()
     EMAIL_FROM: Joi.string().description(
       'the from field in the emails sent by the app',
     ),
+    MAILGUN_API: Joi.string().description('Mailgun API for email server'),
+    MAILGUN_DOMAIN: Joi.string().description(
+      'Mailgun API domain for email server',
+    ),
   })
   .unknown();
 
@@ -73,6 +77,12 @@ module.exports = {
       auth: {
         user: envVars.SMTP_USERNAME,
         pass: envVars.SMTP_PASSWORD,
+      },
+    },
+    api: {
+      auth: {
+        api_key: envVars.MAILGUN_API,
+        domain: envVars.MAILGUN_DOMAIN,
       },
     },
     from: envVars.EMAIL_FROM,

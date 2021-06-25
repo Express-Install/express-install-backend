@@ -1,14 +1,16 @@
 const nodemailer = require('nodemailer');
+const mailgun = require('nodemailer-mailgun-transport');
 const config = require('../config/config');
 const logger = require('../config/logger');
 
-const transport = nodemailer.createTransport(config.email.smtp);
+const method = 'API';
+const transport = nodemailer.createTransport(mailgun(config.email.api));
 /* istanbul ignore next */
-if (config.env !== 'test') {
+if (config.env !== 'test' && method === 'SMTP') {
   transport
     .verify()
-    .then(() => logger.info('Connected to email server'))
-    .catch(() => logger.warn('Unable to connect to email server.'));
+    .then(() => logger.info('Connected to SMTP server'))
+    .catch(() => logger.warn('Unable to connect to SMTP server.'));
 }
 
 /**
