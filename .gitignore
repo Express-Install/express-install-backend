@@ -5,9 +5,13 @@ node_modules
 yarn-error.log
 
 # Environment varibales
-!.env*.example
+.env*
 
 # Code coverage
 coverage
 
+# Jetbrains temp files
 .idea
+
+# SSL certificate
+NGINX/nginx_secrets

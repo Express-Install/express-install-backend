@@ -28,7 +28,7 @@ services:
 
   nginx:
     image: jonasal/nginx-certbot:latest
-    container_name: nginx
+    container_name: NGINX
     restart: unless-stopped
     environment:
       CERTBOT_EMAIL: mrquangkhai98@gmail.com
@@ -37,7 +37,7 @@ services:
       - 443:443
     volumes:
       - ./NGINX/nginx_secrets:/etc/letsencrypt
-      - ./NGINX/user_conf.d:/etc/nginx/user_conf.d
+      - ./NGINX/user_conf.d:/etc/NGINX/user_conf.d
     networks:
       - node-network
 
