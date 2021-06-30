@@ -39,7 +39,7 @@ services:
       - node-app
     volumes:
       - ./NGINX/nginx_secrets:/etc/letsencrypt
-      - ./NGINX/user_conf.d:/etc/NGINX/user_conf.d
+      - ./NGINX/user_conf.d:/etc/nginx/user_conf.d
     networks:
       - node-network
 
