@@ -11,11 +11,13 @@ const createPackage = catchAsync(async (req, res) => {
 
 const bulkCreatePackages = catchAsync(async (req, res) => {
   const packageList = await packageService.bulkCreatePackages(req.body);
-  res.status(httpStatus.CREATED).send(packageList);
+  res
+    .status(httpStatus.CREATED)
+    .send(`Created ${packageList.length} packages.`);
 });
 
 const getPackages = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['packageName', 'cat']);
+  const filter = pick(req.query, ['packageName', 'category']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await packageService.queryPackages(filter, options);
   res.send(result);

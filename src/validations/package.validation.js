@@ -24,7 +24,7 @@ const createMultiplePackages = {
 const getPackages = {
   query: Joi.object().keys({
     packageName: Joi.string(),
-    cat: Joi.string(),
+    category: Joi.string(),
     sortBy: Joi.string(),
     limit: Joi.number().integer(),
     page: Joi.number().integer(),
