@@ -33,8 +33,10 @@ services:
     environment:
       CERTBOT_EMAIL: mrquangkhai98@gmail.com
     ports:
-      - 80:80
-      - 443:443
+      - '80:80'
+      - '443:443'
+    depends_on:
+      - node-app
     volumes:
       - ./NGINX/nginx_secrets:/etc/letsencrypt
       - ./NGINX/user_conf.d:/etc/NGINX/user_conf.d

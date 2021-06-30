@@ -11,7 +11,7 @@ env:
   global:
     - PORT=3000
     - MONGODB_URL=mongodb://localhost:27017/express-install
-    - JWT_SECRET=thuctaptotnghiep
+    - JWT_SECRET=graduationinternship
     - JWT_ACCESS_EXPIRATION_MINUTES=30
     - JWT_REFRESH_EXPIRATION_DAYS=30
 script:
