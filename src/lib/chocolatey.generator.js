@@ -1,4 +1,6 @@
 process.argv[2] = 'Chocolatey';
+process.argv[3] = '__ignore1__=null';
+process.argv[4] = '__ignore2__=null';
 const { generateTemplateFilesCommandLine } = require('generate-template-files');
 const path = require('path');
 
@@ -13,6 +15,7 @@ const generateScript = async (options) => {
       entry: {
         folderPath: templatesDir,
       },
+      stringReplacers: ['__ignore1__', '__ignore2__'],
       dynamicReplacers: [
         {
           slot: '__fileName__',
