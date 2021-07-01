@@ -15,3 +15,6 @@ coverage
 
 # SSL certificate
 NGINX/nginx_secrets
+
+# public folder contents
+public/*

@@ -1,6 +1,6 @@
 const Joi = require('joi');
-// const category = require('../config/category.js');
 const { objectId } = require('./custom.validation');
+// const category = require('../config/category.js');
 
 const createPackage = {
   body: Joi.object().keys({
