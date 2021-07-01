@@ -11,7 +11,7 @@ services:
     depends_on:
       - mongodb
     volumes:
-      - .:/usr/src/node-app:rw
+      - .:/home/node/node-app:rw
     networks:
       - node-network
 
