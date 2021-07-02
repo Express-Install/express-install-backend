@@ -9,7 +9,7 @@ const authLimiter = rateLimit({
 const packageLimiter = rateLimit({
   windowMs: 20 * 60 * 1000,
   max: 30,
-  skipSuccessfulRequests: false,
+  skipSuccessfulRequests: true,
 });
 
 module.exports = {
