@@ -3,11 +3,27 @@ process.argv[3] = '__ignore1__=null';
 process.argv[4] = '__ignore2__=null';
 const { generateTemplateFilesCommandLine } = require('generate-template-files');
 const path = require('path');
+const { removeDirRecursively } = require('../scheduler/removePackage.schedule');
 
 const templatesDir = path.join(__dirname, '../templates/chocolatey');
 const publicDir = path.join(__dirname, '../../public');
 
+const randomUserId = () => {
+  // eslint-disable-next-line no-bitwise
+  const timestamp = ((new Date().getTime() / 1000) | 0).toString(16);
+  return (
+    timestamp +
+    'xxxxxxxxxxxxxxxx'
+      .replace(/[x]/g, () => {
+        // eslint-disable-next-line no-bitwise
+        return ((Math.random() * 16) | 0).toString(16);
+      })
+      .toLowerCase()
+  );
+};
+
 const generateScript = async (options) => {
+  const dirPath = options.dirName !== '' ? options.dirName : randomUserId();
   await generateTemplateFilesCommandLine([
     {
       option: 'Chocolatey',
@@ -27,13 +43,16 @@ const generateScript = async (options) => {
         },
       ],
       output: {
-        path: path.join(publicDir, options.dirName),
+        path: path.join(publicDir, dirPath),
         pathAndFileNameDefaultCase: '(noCase)',
         overwrite: true,
       },
+      onComplete: async (results) =>
+        // eslint-disable-next-line no-return-await
+        await removeDirRecursively(results.output.path, dirPath),
     },
   ]);
-  return path.join(options.dirName, `${options.fileName}.ps1`);
+  return path.join(dirPath, `${options.fileName}.ps1`);
 };
 
 module.exports = { generateScript };

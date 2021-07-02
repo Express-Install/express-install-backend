@@ -56,10 +56,12 @@ const packageSchema = mongoose.Schema(
 packageSchema.plugin(toJSON);
 packageSchema.plugin(paginate);
 
-packageSchema.statics.isPackageExist = async function(packageName) {
+packageSchema.statics.isPackageExist = async function (packageName) {
   const pkg = await this.findOne({ packageName });
   return !!pkg;
 };
+
+packageSchema.index({ '$**': 'text' });
 
 /**
  * @typedef Package
