@@ -13,7 +13,7 @@ services:
     volumes:
       - .:/home/node/node-app:rw
     networks:
-      - node-network
+      - express-install-frontend_shared-network
 
   mongodb:
     image: mongo:4.2.1-bionic
@@ -24,7 +24,7 @@ services:
       - dbdata:/data/db
     command: [--auth]
     networks:
-      - node-network
+      - express-install-frontend_shared-network
 
   nginx:
     image: jonasal/nginx-certbot:latest
