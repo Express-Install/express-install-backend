@@ -41,11 +41,11 @@ services:
       - ./NGINX/nginx_secrets:/etc/letsencrypt
       - ./NGINX/user_conf.d:/etc/nginx/user_conf.d
     networks:
-      - node-network
+      - express-install-frontend_shared-network
 
 volumes:
   dbdata:
 
 networks:
-  node-network:
-    driver: bridge
+  express-install-frontend_shared-network:
+    external: true
