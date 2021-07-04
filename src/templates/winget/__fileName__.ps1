@@ -1,3 +1,6 @@
+param([switch]$admin)
+# $scriptPath = $myinvocation.MyCommand.Definition
+
 function checkAdminPrivileges {
   $isAdmin = New-Object Security.Principal.WindowsPrincipal $([Security.Principal.WindowsIdentity]::GetCurrent())
   return $isAdmin.IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
@@ -21,8 +24,6 @@ function Install-ChocoPkg ($pkg, $opt) {
     Write-Output "$($pkg.ToUpper()) is installed with the latest version!"
   }
 }
-
-###################### Script Starts Here #############################
 
 if (!(checkAdminPrivileges)) {
   Write-Error "Required running script as Administrator"
