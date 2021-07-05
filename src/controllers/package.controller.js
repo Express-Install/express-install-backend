@@ -23,6 +23,13 @@ const getPackages = catchAsync(async (req, res) => {
   res.send(result);
 });
 
+const findPackages = catchAsync(async (req, res) => {
+  const keyword = req.params.key;
+  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const result = await packageService.findPackage(keyword, options);
+  res.send(result);
+});
+
 const getPackage = catchAsync(async (req, res) => {
   const pkg = await packageService.getPackageById(req.params.packageId);
   if (!pkg) {
@@ -51,4 +58,5 @@ module.exports = {
   getPackage,
   updatePackage,
   deletePackage,
+  findPackages,
 };

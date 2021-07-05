@@ -4,3 +4,7 @@ services:
   node-app:
     container_name: node-app-dev
     command: yarn dev -L
+
+networks:
+  express-install-frontend_shared-network:
+    driver: bridge

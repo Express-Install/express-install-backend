@@ -48,6 +48,11 @@ const getPackageById = async (id) => {
   return Package.findById(id);
 };
 
+const findPackage = async (query, options) => {
+  // eslint-disable-next-line no-return-await
+  return await Package.paginate({ $text: { $search: query } }, options);
+};
+
 /**
  * Get package by package name
  * @param {string} packageName
@@ -101,4 +106,5 @@ module.exports = {
   getPackageByPackageName,
   updatePackageById,
   deletePackageById,
+  findPackage,
 };

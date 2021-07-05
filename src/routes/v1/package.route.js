@@ -27,6 +27,8 @@ router
     packageController.bulkCreatePackages,
   );
 
+router.route('/find/:key').get(packageController.findPackages);
+
 router
   .route('/:packageId')
   .get(
